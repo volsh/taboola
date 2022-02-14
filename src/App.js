@@ -21,7 +21,6 @@ export default function App() {
       const todo = todos[index];
       if (todo) {
         const { completed } = todo;
-        const todosBefore = [...todos];
         setTodos((prev) => [
           ...prev.slice(0, index),
           { ...todo, completed: !completed },
@@ -30,7 +29,11 @@ export default function App() {
         updateTodo({ todoId: todo.id, update: { completed: !completed } })
           .then((res) => {})
           .catch((err) => {
-            setTodos(todosBefore);
+            setTodos([
+              ...prev.slice(0, index),
+              { ...todo, completed },
+              ...prev.slice(index + 1),
+            ]);
           });
       }
     },
@@ -41,12 +44,15 @@ export default function App() {
     (index) => {
       const todo = todos[index];
       if (todo) {
-        const todosBefore = [...todos];
         setTodos((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
         deleteTodo({ todoId: todo.id })
           .then((res) => {})
           .catch((err) => {
-            setTodos(todosBefore);
+            setTodos((prev) => [
+              ...prev.slice(0, index),
+              todo,
+              ...prev.slice(index + 1),
+            ]);
           });
       }
     },
