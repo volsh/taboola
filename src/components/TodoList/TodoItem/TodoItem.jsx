@@ -10,12 +10,12 @@ const TodoItem = ({
   deleteTodo,
 }) => {
   const handleClick = (event) => {
-    if (event.ctrlKey) {
+    if (event.ctrlKey || event.metaKey) {
       deleteTodo(index);
     } else {
       toggleComplete(index);
     }
-  }
+  };
   return (
     <div
       className={`${styles.container} ${completed ? styles.completed : ""}`}
