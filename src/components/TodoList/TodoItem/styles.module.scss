@@ -1,0 +1,28 @@
+.container {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: gray;
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .container {
+    background-color: lightcyan;
+    color: black;
+  }
+}
